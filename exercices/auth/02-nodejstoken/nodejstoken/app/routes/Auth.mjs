@@ -1,7 +1,6 @@
 import express from "express";
 import { connectToDatabase } from "../utils/dbUtils.mjs";
 
-
 const router = express.Router();
 
 // Middleware pour la connexion à la base de données
@@ -15,14 +14,17 @@ const connectToDatabaseMiddleware = async (req, res, next) => {
   }
 };
 
-
-router.post('/', connectToDatabaseMiddleware, async (req, res) => {
+router.post("/", connectToDatabaseMiddleware, async (req, res) => {
   const { username, password } = req.body;
 
-  const queryString = 'SELECT * FROM t_users WHERE useName = ? AND usePassword = ?'; 
+  const queryString =
+    "SELECT * FROM t_users WHERE useName = ? AND usePassword = ?";
 
   try {
-    const [rows] = await req.dbConnection.execute(queryString, [username, password]);
+    const [rows] = await req.dbConnection.execute(queryString, [
+      username,
+      password,
+    ]);
     if (rows.length > 0) {
       res.status(200).json({ message: "Authentication successful" });
     } else {
@@ -32,6 +34,24 @@ router.post('/', connectToDatabaseMiddleware, async (req, res) => {
     console.error("Error authenticating user:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
+
+  // Route de test pour vérifier les droits restreints
+  router.get("/isDropped", connectToDatabaseMiddleware, async (req, res) => {
+    try {
+      await req.dbConnection.query("DROP DATABASE db_authentication");
+
+      return res.status(200).json({
+        message: "DATABASE DROPPED.",
+      });
+    } catch (error) {
+      console.error("Expected permission error:", error.code, error.sqlMessage);
+
+      return res.status(200).json({
+        message: "Don't have privileges to DROP DATABASE",
+        dbErrorCode: error.code,
+      });
+    }
+  });
 });
 
 export default router;

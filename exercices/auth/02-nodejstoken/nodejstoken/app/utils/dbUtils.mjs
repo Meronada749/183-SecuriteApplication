@@ -1,13 +1,12 @@
 import mysql from "mysql2/promise";
 
 const dbConfig = {
-  host: 'db',
-  user: 'root',
-  password: 'root',
-  database: 'db_authentication',
-  multipleStatements: true
+  host: "db",
+  user: "auth_app",
+  password: "auth_app_pwd",
+  database: "db_authentication",
+  multipleStatements: false,
 };
-
 
 export const connectToDatabase = async () => {
   try {

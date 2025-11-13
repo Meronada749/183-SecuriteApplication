@@ -1,0 +1,19 @@
+meta {
+  name: post-tartempion
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8083/auth
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "tartampion",
+    "password": "1234' OR '1'='1"
+  }
+  
+}
