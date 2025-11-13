@@ -2,3 +2,8 @@
   "username": "tartampion",
   "password": "1234' OR '1'='1"
 }
+
+{
+  "username": "john",
+  "password": 1234
+}
