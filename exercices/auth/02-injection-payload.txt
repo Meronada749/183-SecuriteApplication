@@ -11,3 +11,5 @@ http://localhost:8083/auth post
   "username": "john",
   "password": 1234
 }
+
+SHOW GRANTS FOR 'M'@'%';
