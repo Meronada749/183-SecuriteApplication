@@ -2,8 +2,8 @@ import mysql from "mysql2/promise";
 
 const dbConfig = {
   host: "db",
-  user: "M",
-  password: "pwd",
+  user: "root",
+  password: "root",
   database: "db_authentication",
   multipleStatements: false,
 };
