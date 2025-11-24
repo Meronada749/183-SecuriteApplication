@@ -14,7 +14,18 @@ Il faut donc utiliser un moyen annexe pour donner l’impression à l’utilisat
 - JWT [pdf](../exercices/auth/03-jwt.pdf) | [docx](../exercices/auth/03-jwt.docx) | [Ressources](../exercices/auth/03-jwt-data.zip)
 
 #### Implémenter dans l’application
-- Générer les clés ?
-- Utiliser jwt de Express...
-    - [Documentation officielle](https://www.npmjs.com/package/express-jwt) 
-    - [Suggestion de tutoriel](https://dev.to/hamzakhan/securing-your-expressjs-app-jwt-authentication-step-by-step-aom)
+- Intégrer JWT
+    - [Documentation officielle pour express-jwt](https://www.npmjs.com/package/express-jwt) 
+	OU
+    - [Suggestion de tutoriel avec jsonwebtoken](https://dev.to/hamzakhan/securing-your-expressjs-app-jwt-authentication-step-by-step-aom)
+
+##### Aide
+Pour gérer un token, il faut à la fois le générer dans le backend après un login réussi et à la fois le renvoyer au client et faire en sorte que ce dernier le renvoie à chaque requête. 
+
+Pour s’aider on peut utiliser:
+
+- l’entête BEARER
+- le storage local
+- un cookie
+
+D’ailleurs, express-jwt se base sur l’enête...
