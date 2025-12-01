@@ -17,6 +17,10 @@ aussi faire de la modification...
 ## Procédures stockées
 Permettent notamment de réaliser des opérations directes sur la base de données en liens avec des ‘trigger’... Et peut aussi être utilisé pour implémenter de la logique métier indépendante du client...
 
+## Théorie
+- [Marketplace](../supports/05-pitch-procedure-pm2etml.pptx)
+- [Vues et procédures stockées](../supports/05-db_audit.pptx)
+
 ## Pratique
 - [Vues](../exercices/db-audit/e-183-ALL-Views.docx)
 - [Procédures stockées](../exercices/db-audit/e-183-ALL-StoredProcedure.docx)
