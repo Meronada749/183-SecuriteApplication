@@ -1,0 +1,40 @@
+# Creation date : 18.03.2024
+# Created by : CSR
+# Description : This compose file creates a stack of two containers (nodejs + mysql)
+# 
+version: '2'
+
+services:
+    db:
+        image: mysql:8.0.30
+        hostname: db
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_user_pass
+        restart: always
+        ports:
+            - "6032:3306"
+        volumes:
+            - ./1_db_student_setup.sql:/docker-entrypoint-initdb.d/1_db_student_setup.sql
+            - ./2_create_views.sql:/docker-entrypoint-initdb.d/2_create_views.sql
+            - dbdata:/var/lib/mysql
+      
+    phpmyadmin:
+        image: phpmyadmin:5.2.0
+        links:
+            - db
+        environment:
+            PMA_HOST: db
+            PMA_PORT: 3306
+            PMA_ARBITRARY: 1
+        restart: always
+        ports:
+            - 8084:80
+
+# The database will be persistent among containers restarts.
+volumes:
+    dbdata:
+
+
+  
